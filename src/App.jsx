@@ -1,8 +1,6 @@
-import "./App.css";
-import { PostsList } from "./pages/PostsList.jsx";
+// import "./App.css";
+import { PostsList } from "./pages";
 
-function App() {
-  return <PostsList />;
-}
+const App = () => <PostsList />;
 
 export default App;
