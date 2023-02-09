@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Spin } from "antd";
+import PostPreview from "./components/PostPreview";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => console.log({ posts }), [posts]);
-  useEffect(() => console.log({ loading }), [loading]);
 
   useEffect(() => {
     setLoading(true);
@@ -24,11 +22,7 @@ const PostsList = () => {
         <Spin />
       ) : (
         <div>
-          {posts.map(({ id, title }) => (
-            // <div key={id}>{title}</div>
-
-            <PostPreview key={post.id}>post={post}</PostPreview>
-          ))}
+          <PostPreview key={posts.id} posts={posts} />
         </div>
       )}
     </div>
