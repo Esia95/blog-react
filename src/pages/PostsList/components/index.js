@@ -1,3 +1,4 @@
 import PostPreview from "./PostPreview";
+import IconText from "./IconText";
 
-export { PostPreview };
+export { PostPreview, IconText };
