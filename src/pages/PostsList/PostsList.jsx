@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Spin } from "antd";
-import PostPreview from "./components/PostPreview";
+import { Spin, List } from "antd";
+
+import { PostPreview } from "./components";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -22,7 +23,16 @@ const PostsList = () => {
         <Spin />
       ) : (
         <div>
-          <PostPreview key={posts.id} posts={posts} />
+          <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+              onChange: () => {},
+              pageSize: 5,
+            }}
+            dataSource={posts}
+            renderItem={(post) => <PostPreview key={post.id} post={post} />}
+          />
         </div>
       )}
     </div>
