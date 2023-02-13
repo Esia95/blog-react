@@ -26,10 +26,6 @@ const PostsList = () => {
           <List
             itemLayout="vertical"
             size="large"
-            pagination={{
-              onChange: () => {},
-              pageSize: 5,
-            }}
             dataSource={posts}
             renderItem={(post) => <PostPreview key={post.id} post={post} />}
           />
