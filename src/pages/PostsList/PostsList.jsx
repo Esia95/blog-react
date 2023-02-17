@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { List } from "antd";
-import { Loading } from "../../components";
+import { Loading } from "components";
 import { PostPreview } from "./components";
 
 const PostsList = () => {

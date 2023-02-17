@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import MainLayout from "./components/MainLayout";
-import { PostDetails } from "./pages";
-import PostsList from "./pages/PostsList/PostsList";
+import { MainLayout } from "./components";
+import { PostDetails, PostsList } from "./pages";
 
 const App = () => (
   <Routes>
