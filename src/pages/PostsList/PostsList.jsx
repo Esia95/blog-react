@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Spin, List } from "antd";
-
+import { List } from "antd";
+import { Loading } from "components";
 import { PostPreview } from "./components";
 
 const PostsList = () => {
@@ -18,20 +18,17 @@ const PostsList = () => {
   }, []);
 
   return (
-    <div>
-      {loading ? (
-        <Spin />
-      ) : (
-        <div>
-          <List
-            itemLayout="vertical"
-            size="large"
-            dataSource={posts}
-            renderItem={(post) => <PostPreview key={post.id} post={post} />}
-          />
-        </div>
+    <>
+      {loading && <Loading />}
+      {!loading && (
+        <List
+          itemLayout="vertical"
+          size="large"
+          dataSource={posts}
+          renderItem={(post) => <PostPreview post={post} />}
+        />
       )}
-    </div>
+    </>
   );
 };
 
