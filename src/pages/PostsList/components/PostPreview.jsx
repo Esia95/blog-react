@@ -1,5 +1,5 @@
 import React from "react";
-import IconText from "./IconText";
+import { IconText } from "components";
 import { List, Typography, Button } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
