@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { List } from "antd";
 import { Loading } from "components";
 import { PostPreview } from "./components";
+import postService from "services/post";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -9,8 +10,8 @@ const PostsList = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/posts")
-      .then((response) => response.json())
+    postService
+      .fetchPosts()
       .then((data) => {
         setPosts(data);
       })
