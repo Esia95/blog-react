@@ -34,9 +34,12 @@ const postService = {
     }).then((response) => response.json()),
 
   deletePost: (postId) =>
-    fetch(`${BASE_URL}/${postId}`, { method: "DELETE" }).then((response) =>
-      response.json()
-    ),
+    fetch(`${BASE_URL}/${postId}`, { method: "DELETE" }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Something went wrong, can't delete");
+      }
+      return true;
+    }),
 };
 
 export default postService;
