@@ -11,6 +11,7 @@ const postService = {
         if (isEmpty(data)) {
           throw new Error("Not found");
         }
+
         return data;
       }),
 

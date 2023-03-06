@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "json-server --watch posts.json --delay 2000"
+    "server": "json-server --watch posts.json --delay 1000"
   },
   "dependencies": {
     "@types/styled-components": "5.1.26",

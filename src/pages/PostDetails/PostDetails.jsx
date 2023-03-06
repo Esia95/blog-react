@@ -1,35 +1,31 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Loading, IconText } from "components";
+import { useParams, useNavigate } from "react-router-dom";
+import { Loading, IconText, ErrorResult } from "components";
 import { Card } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import postService from "services/post";
+import { useQuery } from "react-query";
 
 const PostDetails = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
-  const [post, setPost] = useState();
-  const [loading, setLoading] = useState(true);
+  const {
+    isLoading,
+    data: post,
+    error,
+  } = useQuery(["post", postId], () => postService.fetchPost(postId));
 
-  useEffect(() => {
-    postService
-      .fetchPost(postId)
-      .then((data) => {
-        setPost(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.message === "Not found") {
-          navigate("/not-found");
-        }
-      });
-  }, []);
+  if (error) {
+    if (error.message === "Not found") {
+      navigate("/not-found");
+    } else {
+      return <ErrorResult errorMessage={error.message} />;
+    }
+  }
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
+      {isLoading && <Loading />}
+      {!isLoading && (
         <Card title={post?.title}>
           {post?.body}
           <div>

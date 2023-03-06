@@ -1,7 +1,7 @@
 import { Button, Col, Result, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const NotFound = () => {
+const ErrorResult = ({ errorMessage }) => {
   const navigate = useNavigate();
 
   const handleBackHome = () => navigate("/posts");
@@ -14,9 +14,8 @@ const NotFound = () => {
     >
       <Col>
         <Result
-          status="404"
-          title="404"
-          subTitle="Sorry, the page you visited does not exist."
+          status="500"
+          title={errorMessage}
           extra={
             <Button type="primary" onClick={handleBackHome}>
               Back Home
@@ -28,4 +27,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default ErrorResult;
