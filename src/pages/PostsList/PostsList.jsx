@@ -1,29 +1,31 @@
-import { useState, useEffect } from "react";
-import { List } from "antd";
+import { List, Typography } from "antd";
 import { Loading } from "components";
 import { PostPreview } from "./components";
+import postService from "services/post";
+import { useQuery } from "react-query";
+
+const { Title } = Typography;
 
 const PostsList = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const {
+    isLoading,
+    data: posts,
+    error,
+  } = useQuery("posts", postService.fetchPosts);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:3000/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  if (error) {
+    return <ErrorResult errorMessage={error.message} />;
+  }
 
   return (
     <>
-      {loading && <Loading />}
-      {!loading && (
+      {isLoading && <Loading />}
+      {!isLoading && (
         <List
+          header={<Title style={{ paddingLeft: "24px" }}>Posts</Title>}
           itemLayout="vertical"
           size="large"
+          style={{ backgroundColor: "white" }}
           dataSource={posts}
           renderItem={(post) => <PostPreview post={post} />}
         />

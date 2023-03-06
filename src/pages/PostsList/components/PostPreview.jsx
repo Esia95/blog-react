@@ -1,4 +1,3 @@
-import React from "react";
 import { IconText } from "components";
 import { List, Typography, Button } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
