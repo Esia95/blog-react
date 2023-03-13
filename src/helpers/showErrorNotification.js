@@ -1,4 +1,4 @@
 import { notification } from "antd";
 
-export const showErrorNotifiation = (message) =>
+export const showErrorNotification = (message) =>
   notification.error({ message });

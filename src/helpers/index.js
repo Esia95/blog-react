@@ -1,4 +1,4 @@
 import { showSuccessNotification } from "./showSuccessNotification";
-import { showErrorNotifiation } from "./showErrorNotification";
+import { showErrorNotification } from "./showErrorNotification";
 
-export { showSuccessNotification, showErrorNotifiation };
+export { showSuccessNotification, showErrorNotification };
