@@ -8,26 +8,25 @@ import {
 import { useNavigate } from "react-router-dom";
 import postService from "services/post";
 import { useMutation, useQueryClient } from "react-query";
-import { showSuccessNotification } from "helpers";
-import { showErrorNotifiation } from "helpers/showErrorNotification";
+import { showSuccessNotification, showErrorNotification } from "helpers";
 
 const { Paragraph } = Typography;
 
 const PostPreview = ({ post }) => {
   const navigate = useNavigate();
-  const handleNavigate = (postId) => navigate(`/posts/${postId}`);
-  const queryClinet = useQueryClient();
+  const queryClient = useQueryClient();
 
-  const { isLoading, data, isError, mutate } = useMutation(
+  const handleNavigate = (postId) => navigate(`/posts/${postId}`);
+
+  const { isLoading, mutate } = useMutation(
     () => postService.deletePost(post.id),
     {
       onSuccess: () => {
         showSuccessNotification();
-
-        queryClinet.invalidateQueries("posts");
+        queryClient.invalidateQueries("posts");
       },
       onError: (error) => {
-        showErrorNotifiation(error.message);
+        showErrorNotification(error.message);
       },
     }
   );
