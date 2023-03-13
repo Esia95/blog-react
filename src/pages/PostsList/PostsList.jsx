@@ -1,6 +1,6 @@
-import { List, Typography } from "antd";
-import { Loading } from "components";
-import { PostPreview } from "./components";
+import { List, Typography, Row, Col } from "antd";
+import { Loading, ErrorResult } from "components";
+import { CreatePostModel, PostPreview, EditPostModel } from "./components";
 import postService from "services/post";
 import { useQuery } from "react-query";
 
@@ -21,14 +21,22 @@ const PostsList = () => {
     <>
       {isLoading && <Loading />}
       {!isLoading && (
-        <List
-          header={<Title style={{ paddingLeft: "24px" }}>Posts</Title>}
-          itemLayout="vertical"
-          size="large"
-          style={{ backgroundColor: "white" }}
-          dataSource={posts}
-          renderItem={(post) => <PostPreview post={post} />}
-        />
+        <Row gutter={[16, 16]} justify="end">
+          <Col>
+            <CreatePostModel />
+            <EditPostModel />
+          </Col>
+          <Col>
+            <List
+              header={<Title style={{ paddingLeft: "24px" }}>Posts</Title>}
+              itemLayout="vertical"
+              size="large"
+              style={{ backgroundColor: "white" }}
+              dataSource={posts}
+              renderItem={(post) => <PostPreview post={post} />}
+            />
+          </Col>
+        </Row>
       )}
     </>
   );

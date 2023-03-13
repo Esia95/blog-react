@@ -1,9 +1,16 @@
-import { IconText } from "components";
-import { List, Typography, Button } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
+import { Button, List, Typography } from "antd";
+import { IconText } from "components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const { Paragraph } = Typography;
+
+const ExtraContentWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  height: 100%;
+`;
 
 const PostPreview = ({ post }) => {
   const navigate = useNavigate();
@@ -12,29 +19,26 @@ const PostPreview = ({ post }) => {
 
   return (
     <List.Item
-      key={post.id}
+      key={post.title}
       actions={[
         <IconText
           icon={LikeOutlined}
           text={post.likesCount}
           key="list-vertical-like-o"
         />,
-        <Button onClick={() => handleNavigate(post.id)}>Read more</Button>,
       ]}
+      extra={
+        <ExtraContentWrapper>
+          <Button type="primary" onClick={() => handleNavigate(post.id)}>
+            Read more
+          </Button>
+        </ExtraContentWrapper>
+      }
     >
-      <List.Item.Meta
-        title={post.title}
-        description={
-          <Paragraph
-            ellipsis={{
-              rows: 2,
-              expandable: false,
-            }}
-          >
-            {post.body}
-          </Paragraph>
-        }
-      />
+      <List.Item.Meta title={post.title} />
+      <Paragraph ellipsis={{ rows: 2, expandable: false }}>
+        {post.body}
+      </Paragraph>
     </List.Item>
   );
 };
