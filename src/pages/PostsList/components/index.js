@@ -1,3 +1,5 @@
 import PostPreview from "./PostPreview";
+import CreatePostModel from "./CreatePostModel";
+import EditPostModel from "./EditPostModel";
 
-export { PostPreview };
+export { PostPreview, CreatePostModel, EditPostModel };
