@@ -1,4 +1,4 @@
 import { notification } from "antd";
 
-export const showSuccessNotification = () =>
-  notification.success({ message: "Done" });
+export const showSuccessNotification = (message = "Done") =>
+  notification.success({ message });
